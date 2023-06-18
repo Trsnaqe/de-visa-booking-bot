@@ -25,17 +25,12 @@ bot.on("message", async (msg) => {
 async function availableBookingChecker() {
   console.log("checking website");
   const result = await GetBooking();
-  if (result == null || result.length == 0) {
-    console.log("no appointments available");
-
-    bot.sendMessage(abdChatId, "Appointments available");
-    bot.sendMessage(abdChatId, JSON.stringify(result));
-    bot.sendMessage(abdChatId, "https://otv.verwalt-berlin.de/ams/TerminBuchen/wizardng?sprachauswahl=de");
-  } else {
+  if (result == null || result.length == 0) {console.log("no appointments available");}
+  else {
     bot.sendMessage(abdChatId, "Appointments available");
     bot.sendMessage(abdChatId, JSON.stringify(result));
     bot.sendMessage(abdChatId, "https://otv.verwalt-berlin.de/ams/TerminBuchen/wizardng?sprachauswahl=de");
   }
 }
 
-setInterval(availableBookingChecker, 1 * 60 * 1000);
+setInterval(availableBookingChecker, 5 * 60 * 1000);
